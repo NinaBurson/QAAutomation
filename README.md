@@ -1,4 +1,4 @@
-pom.xml
+pom.xml for run it locally
 
        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -6,14 +6,6 @@ pom.xml
             <version>3.141.59</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.1.0</version>
-            <scope>test</scope>
-        </dependency>
-        
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
