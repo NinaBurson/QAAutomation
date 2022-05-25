@@ -1,6 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,7 +20,7 @@ public class testCrowdStreet {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
-    
+
     @AfterMethod
     public void shutDown(){
         driver.quit();
@@ -27,14 +28,14 @@ public class testCrowdStreet {
 
 
     @Test
-    public void testLogin(){
+    public void testLogin() throws InterruptedException {
 
         driver.get("https://test.crowdstreet.com/invexp/properties/all");
 
         driver.findElement(By.xpath("//a[@href='/invexp/accounts/create-account']")).click();
         driver.findElement(By.xpath("//input[@id='firstName']")).sendKeys("Nina");
         driver.findElement(By.xpath("//input[@id='lastName']")).sendKeys("Burson");
-        driver.findElement(By.xpath("//input[@id='email']")).sendKeys("qaninatest@gmail.com");
+        driver.findElement(By.xpath("//input[@id='email']")).sendKeys("qan1inatest@gmail.com");
         driver.findElement(By.xpath("//input[@id='password']")).sendKeys("Nina123!");
         driver.findElement(By.xpath("//input[@id='confirmPassword']")).sendKeys("Nina123!");
         driver.findElement(By.xpath("//input[@id='accreditedNo']")).click();
@@ -43,11 +44,12 @@ public class testCrowdStreet {
         WebElement iframeSwitch = driver.findElement(By.xpath("//iframe[@title='reCAPTCHA']"));
         driver.switchTo().frame(iframeSwitch);
         driver.findElement(By.xpath("//*[@id='recaptcha-anchor']/div[1]")).click();
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-
-        WebElement submit = driver.findElement(By.xpath("//*[@id='content-well']/div[2]/div/div[2]/form/button/span"));
-        js.executeScript("arguments[0].scrollIntoView(true);", submit);
+        driver.switchTo().defaultContent();
+        WebElement submit = driver.findElement(By.cssSelector(".box-border.flex"));
+        Actions action = new Actions(driver);
+        action.moveToElement(submit).perform();
+        Thread.sleep(5);
         submit.click();
+        
     }
 }
