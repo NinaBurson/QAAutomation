@@ -1,4 +1,4 @@
-pom.file
+pom.xml
 
        <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
